@@ -1,9 +1,9 @@
-FROM openshift/base-rhel7
+FROM deploydock/base-rhel7
 
 # This image provides a Python 2.7 environment you can use to run your Python
 # applications.
 
-MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
+MAINTAINER Eric Sites <eric@meros.io>
 
 EXPOSE 8080
 
@@ -12,12 +12,12 @@ ENV PYTHON_VERSION=2.7 \
 
 LABEL io.k8s.description="Platform for building and running Python 2.7 applications" \
       io.k8s.display-name="Python 2.7" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,python,python27,rh-python27"
+      io.deploydock.expose-services="8080:http" \
+      io.deploydock.tags="builder,python,python27,rh-python27"
 
 # Labels consumed by Red Hat build service
-LABEL BZComponent="openshift-sti-python-docker" \
-      Name="openshift3/python-27-rhel7" \
+LABEL BZComponent="deploydock-sti-python-docker" \
+      Name="deploydock/python-27-rhel7" \
       Version="2.7" \
       Release="1" \
       Architecture="x86_64"
@@ -36,7 +36,7 @@ COPY ./s2i/bin/ /usr/local/sti
 COPY ./contrib/ /opt/app-root
 
 # In order to drop the root user, we have to make some directories world
-# writeable as OpenShift default security model is to run the container under
+# writeable as DeployDock default security model is to run the container under
 # random UID.
 RUN chown -R 1001:0 /opt/app-root && chmod -R og+rwx /opt/app-root
 

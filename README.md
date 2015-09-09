@@ -1,9 +1,9 @@
-Python for OpenShift - Docker images
+Python for DeployDock - Docker images
 ========================================
 
 This repository contains the source for building various versions of
 the Python application as a reproducible Docker image using
-[source-to-image](https://github.com/openshift/source-to-image).
+[source-to-image](https://github.com/Meros-io/source-to-image).
 Users can choose between RHEL and CentOS based builder images.
 The resulting image can be run using [Docker](http://docker.io).
 
@@ -31,7 +31,7 @@ To build a Python image, choose either the CentOS or RHEL based image:
     subscribed RHEL machine.
 
     ```
-    $ git clone https://github.com/openshift/sti-python.git
+    $ git clone https://github.com/Meros-io/sti-python.git
     $ cd sti-python
     $ make build TARGET=rhel7 VERSION=3.3
     ```
@@ -41,13 +41,13 @@ To build a Python image, choose either the CentOS or RHEL based image:
     This image is available on DockerHub. To download it run:
 
     ```
-    $ docker pull openshift/python-33-centos7
+    $ docker pull deploydock/python-33-centos7
     ```
 
     To build a Python image from scratch run:
 
     ```
-    $ git clone https://github.com/openshift/sti-python.git
+    $ git clone https://github.com/Meros-io/sti-python.git
     $ cd sti-python
     $ make build VERSION=3.3
     ```
@@ -58,19 +58,19 @@ on all provided versions of Python.**
 
 Usage
 ---------------------
-To build a simple [python-sample-app](https://github.com/openshift/sti-python/tree/master/3.3/test/setup-test-app) application
-using standalone [S2I](https://github.com/openshift/source-to-image) and then run the
+To build a simple [python-sample-app](https://github.com/Meros-io/sti-python/tree/master/3.3/test/setup-test-app) application
+using standalone [S2I](https://github.com/Meros-io/source-to-image) and then run the
 resulting image with [Docker](http://docker.io) execute:
 
 *  **For RHEL based image**
     ```
-    $ s2i build https://github.com/openshift/sti-python.git --context-dir=3.3/test/setup-test-app/ openshift/python-33-rhel7 python-sample-app
+    $ s2i build https://github.com/Meros-io/sti-python.git --context-dir=3.3/test/setup-test-app/ deploydock/python-33-rhel7 python-sample-app
     $ docker run -p 8080:8080 python-sample-app
     ```
 
 *  **For CentOS based image**
     ```
-    $ s2i build https://github.com/openshift/sti-python.git --context-dir=3.3/test/setup-test-app/ openshift/python-33-centos7 python-sample-app
+    $ s2i build https://github.com/Meros-io/sti-python.git --context-dir=3.3/test/setup-test-app/ deploydock/python-33-centos7 python-sample-app
     $ docker run -p 8080:8080 python-sample-app
     ```
 
@@ -82,7 +82,7 @@ $ curl 127.0.0.1:8080
 
 Test
 ---------------------
-This repository also provides a [S2I](https://github.com/openshift/source-to-image) test framework,
+This repository also provides a [S2I](https://github.com/Meros-io/source-to-image) test framework,
 which launches tests to check functionality of a simple Python application built on top of the sti-python image.
 
 Users can choose between testing a Python test application based on a RHEL or CentOS image.
@@ -123,7 +123,7 @@ Repository organization
 
     * **`s2i/bin/`**
 
-        This folder contains scripts that are run by [S2I](https://github.com/openshift/source-to-image):
+        This folder contains scripts that are run by [S2I](https://github.com/Meros-io/source-to-image):
 
         *   **assemble**
 
@@ -146,20 +146,20 @@ Repository organization
 
     * **`test/`**
 
-        This folder contains a [S2I](https://github.com/openshift/source-to-image)
+        This folder contains a [S2I](https://github.com/Meros-io/source-to-image)
         test framework with a simple server.
 
         * **`setup-test-app/`**
 
-            Simple Gunicorn application used for testing purposes by the [S2I](https://github.com/openshift/source-to-image) test framework.
+            Simple Gunicorn application used for testing purposes by the [S2I](https://github.com/Meros-io/source-to-image) test framework.
 
         * **`standalone-test-app/`**
 
-            Simple standalone application used for testing purposes by the [S2I](https://github.com/openshift/source-to-image) test framework.
+            Simple standalone application used for testing purposes by the [S2I](https://github.com/Meros-io/source-to-image) test framework.
 
         * **run**
 
-            Script that runs the [S2I](https://github.com/openshift/source-to-image) test framework.
+            Script that runs the [S2I](https://github.com/Meros-io/source-to-image) test framework.
 
 * **`hack/`**
 
@@ -168,13 +168,13 @@ Repository organization
 
 Image name structure
 ------------------------
-##### Structure: openshift/1-2-3
+##### Structure: deploydock/1-2-3
 
 1. Platform name (lowercase) - python
 2. Platform version(without dots) - 33
 3. Base builder image - centos7/rhel7
 
-Examples: `openshift/python-33-centos7`, `openshift/python-33-rhel7`
+Examples: `deploydock/python-33-centos7`, `deploydock/python-33-rhel7`
 
 
 Environment variables
@@ -204,7 +204,7 @@ file inside your source code repository.
 
     If using `setup.py` for installing the application, the `MODULE_NAME` part
     can be read from there. For an example, see
-    [setup-test-app](https://github.com/openshift/sti-python/tree/master/3.3/test/setup-test-app).
+    [setup-test-app](https://github.com/Meros-io/sti-python/tree/master/3.3/test/setup-test-app).
 
 * **APP_CONFIG**
 

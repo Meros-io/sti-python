@@ -1,9 +1,9 @@
-FROM openshift/base-centos7
+FROM deploydock/base-centos7
 
 # This image provides a Python 2.7 environment you can use to run your Python
 # applications.
 
-MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
+MAINTAINER Eric Sites <eric@meros.io>
 
 EXPOSE 8080
 
@@ -12,8 +12,8 @@ ENV PYTHON_VERSION=2.7 \
 
 LABEL io.k8s.description="Platform for building and running Python 2.7 applications" \
       io.k8s.display-name="Python 2.7" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,python,python27,rh-python27"
+      io.deploydock.expose-services="8080:http" \
+      io.deploydock.tags="builder,python,python27,rh-python27"
 
 RUN yum install -y \
     https://www.softwarecollections.org/en/scls/rhscl/python27/epel-7-x86_64/download/rhscl-python27-epel-7-x86_64.noarch.rpm && \

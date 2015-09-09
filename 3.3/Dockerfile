@@ -1,8 +1,8 @@
-FROM openshift/base-centos7
+FROM deploydock/base-centos7
 
 # This image provides a Python 3.3 environment you can use to run your Python
 # applications.
-MAINTAINER SoftwareCollections.org <sclorg@redhat.com>
+MAINTAINER Eric Sites <eric@meros.io>
 
 EXPOSE 8080
 
@@ -11,8 +11,8 @@ ENV PYTHON_VERSION=3.3 \
 
 LABEL io.k8s.description="Platform for building and running Python 3.3 applications" \
       io.k8s.display-name="Python 3.3" \
-      io.openshift.expose-services="8080:http" \
-      io.openshift.tags="builder,python,python33"
+      io.deploydock.expose-services="8080:http" \
+      io.deploydock.tags="builder,python,python33"
 
 RUN yum install -y \
     https://www.softwarecollections.org/en/scls/rhscl/python33/epel-7-x86_64/download/rhscl-python33-epel-7-x86_64.noarch.rpm && \
